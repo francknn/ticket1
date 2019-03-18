@@ -13,7 +13,7 @@ use App\Http\Resources\ClientResource;
 use App\Http\Requests\StoreClient;
 
 use App\Authorizable;use App\Employe;
-
+use App\Http\Requests\ClientStoreRequest;
 class ClientController extends Controller
 {
     use Authorizable;
@@ -49,7 +49,7 @@ class ClientController extends Controller
      */
     
   
-    public function store(Request $request)
+    public function store(ClientStoreRequest $request)
     {
 
      
@@ -92,7 +92,7 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function update(Request $request, $id)
+    public function update(ClientStoreRequest $request, $id)
     {
         
 $Client=Client::get()->where('id',$id)->first();

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class ResetPasswordController extends Controller
 {
     public function sendEmail(Request $request)

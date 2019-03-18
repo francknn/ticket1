@@ -13,7 +13,7 @@ use App\Http\Resources\Chatter_postResource;
 use App\Http\Requests\StoreChatter_post;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
+use App\Http\Requests\Chatter_postStoreRequest;
 class ChatterPostController extends Controller
 {
     use Authorizable;
@@ -49,13 +49,9 @@ class ChatterPostController extends Controller
      */
     
   
-    public function store(Request $request)
+    public function store(Chatter_postStoreRequest $request)
     {
 
-        $this->validate($request, [
-            'body' => 'required|min:10',
-           
-        ]);
       
 
         if($Chatter_post = Chatter_post::create($request->except('roles', 'permissions')) ) {
@@ -97,11 +93,9 @@ class ChatterPostController extends Controller
      */
     
 
-    public function update(Request $request, $id)
+    public function update(Chatter_postStoreRequest $request, $id)
     {
-        $this->validate($request, [
-            'body' => 'required|min:10',
-        ]);
+       
 $Chatter_post=Chatter_post::get()->where('id',$id)->first();
         if($Chatter_post->update($request->toArray())) {
             return new Chatter_postResource($Chatter_post);

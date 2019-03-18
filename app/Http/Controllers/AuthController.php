@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\User;
 
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class AuthController extends Controller
 {
     /**

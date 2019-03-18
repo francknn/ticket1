@@ -13,7 +13,7 @@ use App\Http\Resources\RequeteResource;
 use App\Http\Requests\StoreRequete;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
+use App\Http\Requests\RequeteStoreRequest;
 class RequeteController extends Controller
 {
     use Authorizable;
@@ -49,7 +49,7 @@ class RequeteController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(RequeteStoreRequest $request)
     {
 
 
@@ -93,7 +93,7 @@ class RequeteController extends Controller
      */
    
 
-    public function update(Request $request, $id)
+    public function update(RequeteStoreRequest $request, $id)
     {
 $Requete=Requete::get()->where('id',$id)->first();
         if($Requete->update($request->toArray())) {

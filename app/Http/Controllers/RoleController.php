@@ -6,7 +6,7 @@ use App\Authorizable;
 use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class RoleController extends Controller
 {
     use Authorizable;

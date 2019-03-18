@@ -13,7 +13,7 @@ use App\Http\Resources\ServiceResource;
 use App\Http\Requests\StoreService;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
+use App\Http\Requests\ServiceStoreRequest;
 class ServiceController extends Controller
 {
     use Authorizable;
@@ -49,7 +49,7 @@ class ServiceController extends Controller
      */
   
   
-    public function store(Request $request)
+    public function store(ServiceStoreRequest $request)
     {
 
 
@@ -92,12 +92,9 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function update(Request $request, $id)
+    public function update(ServiceStoreRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:Services,email,' . $id,
-        ]);
+       
 $Service=Service::get()->where('id',$id)->first();
         if($Service->update($request->toArray())) {
             return new ServiceResource($Service);

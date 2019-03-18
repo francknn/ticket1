@@ -13,7 +13,7 @@ use App\Http\Resources\CategorieResource;
 use App\Http\Requests\StoreCategorie;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class CategorieController extends Controller
 {
     use Authorizable;
@@ -51,13 +51,6 @@ class CategorieController extends Controller
   
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:Categories',
-            'password' => 'required|min:6',
-           
-        ]);
 
 
         if($Categorie = Categorie::create($request->except('roles', 'permissions')) ) {
@@ -101,10 +94,7 @@ class CategorieController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'bail|required|min:2',
-            'email' => 'required|email|unique:Categories,email,' . $id,
-        ]);
+       
 $Categorie=Categorie::get()->where('id',$id)->first();
         if($Categorie->update($request->toArray())) {
             return new CategorieResource($Categorie);

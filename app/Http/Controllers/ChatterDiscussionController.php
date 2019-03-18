@@ -13,7 +13,7 @@ use App\Http\Resources\Chatter_discussionResource;
 use App\Http\Requests\StoreChatter_discussion;
 use App\Client;
 use App\Employe;
-use App\Authorizable;
+use App\Authorizable;use App\Http\Requests\Chatter_discussionStoreRequest;
 class ChatterDiscussionController extends Controller
 {
     use Authorizable;
@@ -48,16 +48,12 @@ class ChatterDiscussionController extends Controller
      */
     
   
-    public function store(Request $request)
+    public function store(Chatter_discussionStoreRequest $request)
     {
 
        
 
-        $this->validate($request->all(), [
-            'title'               => 'required|min:5|max:255',
-            'body_content'        => 'required|min:10',
-            'chatter_category_id' => 'required',
-         ]);
+        
         
 
 
@@ -101,14 +97,9 @@ class ChatterDiscussionController extends Controller
      */
    
 
-    public function update(Request $request, $id)
+    public function update(Chatter_discussionStoreRequest $request, $id)
     {
-        $this->validate($request->all(), [
-            'title'               => 'required|min:5|max:255',
-            'body_content'        => 'required|min:10',
-            'chatter_category_id' => 'required',
-         ]);
-        
+
 $Chatter_discussion=Chatter_discussion::get()->where('id',$id)->first();
         if($Chatter_discussion->update($request->toArray())) {
             return new Chatter_discussionResource($Chatter_discussion);

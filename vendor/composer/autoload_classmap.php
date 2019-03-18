@@ -74,6 +74,7 @@ return array(
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Service' => $baseDir . '/app/Service.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\users' => $baseDir . '/app/users.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

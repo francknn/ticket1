@@ -6,7 +6,7 @@ use App\Authorizable;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\PostStoreRequest;
 class PostController extends Controller
 {
     use Authorizable;
@@ -39,13 +39,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|min:10',
-            'body' => 'required|min:20'
-        ]);
-
+       
         $request->user()->posts()->create($request->all());
 
         flash('Post has been added');
@@ -84,13 +80,8 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostStoreRequest $request, Post $post)
     {
-        $this->validate($request, [
-            'title' => 'required|min:10',
-            'body' => 'required|min:20'
-        ]);
-
         $me = $request->user();
 
         if( $me->hasRole('Admin') ) {

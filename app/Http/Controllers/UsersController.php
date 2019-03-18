@@ -13,13 +13,11 @@ use App\Http\Resources\UserResource;
 use App\Http\Requests\StoreUser;
 use App\Client;
 use App\Employe;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class UserController extends Controller
 {
     
-   // use Authorizable;
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *
@@ -44,10 +42,16 @@ class UserController extends Controller
 
    
   
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
 
-       
+        $this->validate($request, [
+            'name' => 'bail|required|min:2',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+           
+        ]);
+
 
         if($user = User::create($request->except('roles', 'permissions')) ) {
             return new UserResource($user);
@@ -81,9 +85,12 @@ class UserController extends Controller
 
    
 
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        
+        $this->validate($request, [
+            'name' => 'bail|required|min:2',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
 $user=User::get()->where('id',$id)->first();
         if($user->update($request->toArray())) {
             return new UserResource($user);

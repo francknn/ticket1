@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class LoginController extends Controller
 {
     /*

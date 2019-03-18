@@ -12,8 +12,8 @@ use Image;
 use App\Http\Resources\Chatter_categoriesResource;
 use App\Http\Requests\StoreChatter_categories;
 use App\Client;
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 use App\Authorizable;use App\Employe;
-
 class ChatterCategoriesController extends Controller
 {
     use Authorizable;
@@ -49,7 +49,7 @@ class ChatterCategoriesController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(Chatter_categoriesStoreRequest $request)
     {
 
        
@@ -93,7 +93,7 @@ class ChatterCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function update(Request $request, $id)
+    public function update(Chatter_categoriesStoreRequest $request, $id)
     {
         
 $Chatter_categories=Chatter_categories::get()->where('id',$id)->first();

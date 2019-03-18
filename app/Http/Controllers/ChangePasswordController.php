@@ -7,7 +7,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use App\User;
-
+use App\Http\Requests\Chatter_categoriesStoreRequest;
 class ChangePasswordController extends Controller
 {
     public function process(ChangePasswordRequest $request)

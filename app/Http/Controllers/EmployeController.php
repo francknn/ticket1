@@ -12,7 +12,7 @@ use Image;
 use App\Http\Resources\EmployeResource;
 use App\Http\Requests\StoreEmploye;
 use App\Client;
-
+use App\Http\Requests\EmployeStoreRequest;
 class EmployeController extends Controller
 {
     
@@ -47,7 +47,7 @@ class EmployeController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(EmployeStoreRequest $request)
     {
 
 
@@ -91,7 +91,7 @@ class EmployeController extends Controller
      */
    
 
-    public function update(Request $request, $id)
+    public function update(EmployeStoreRequest $request, $id)
     {
       
 $Employe=Employe::get()->where('id',$id)->first();
