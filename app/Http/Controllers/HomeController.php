@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Chatter_categoriesStoreRequest;
 class HomeController extends Controller
 {
-    use Authorizable;
+   
     /**
      * Create a new controller instance.
      *

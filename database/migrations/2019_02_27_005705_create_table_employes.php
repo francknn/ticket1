@@ -15,10 +15,14 @@ class CreateTableEmployes extends Migration
     {
         Schema::create('employes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('FullName');
-            $table->string('EMPCode');
-            $table->string( 'Mobile');
-            $table->string('Position');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('email');
+            $table->string('telephone');
+            $table->string('pays');
+            $table->string('ville');
+            $table->string('adresse');            
+            $table->string('image');
             $table->timestamps();
         });
     }

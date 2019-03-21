@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Chatter_categoriesStoreRequest;
 class MessageController extends Controller
 {
-    use Authorizable;
+   
     /**
      * Display a listing of the resource.
      *

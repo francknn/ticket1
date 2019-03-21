@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Chatter_user_discussion;
-use App\Role;
 use App\Permission;
+use App\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\Chatter_user_discussionResource;
-use App\Http\Requests\StoreChatter_user_discussion;
+use App\Http\Resources\PermissionResource;
+use App\Http\Requests\StorePermission;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
-class ChatterUserDiscussionController extends Controller
+use App\Http\Requests\PermissionStoreRequest;
+class PermissionController extends Controller
 {
    
     
@@ -26,10 +25,10 @@ class ChatterUserDiscussionController extends Controller
      */
     public function index()
     {
-        $Chatter_user_discussions = Chatter_user_discussion::paginate(15);
+        $Permissions = Permission::paginate(15);
 
         
-        return Chatter_user_discussionResource::collection($Chatter_user_discussions);
+        return PermissionResource::collection($Permissions);
     }
 
     /**
@@ -49,14 +48,13 @@ class ChatterUserDiscussionController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(PermissionStoreRequest $request)
     {
 
-        
 
 
-        if($Chatter_user_discussion = Chatter_user_discussion::create($request->except('roles', 'permissions')) ) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Permission = Permission::create($request->except('roles', 'permissions')) ) {
+            return new PermissionResource($Permission);
         }
           
     }
@@ -69,9 +67,9 @@ class ChatterUserDiscussionController extends Controller
      */
     public function show($id)
     {
-       $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+       $Permission = Permission::findOrFail($id);
 
-       return new Chatter_user_discussionResource($Chatter_user_discussion);
+       return new PermissionResource($Permission);
     }
 
     /**
@@ -93,12 +91,12 @@ class ChatterUserDiscussionController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function update(Request $request, $id)
+
+    public function update(PermissionStoreRequest $request, $id)
     {
-        
-$Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first();
-        if($Chatter_user_discussion->update($request->toArray())) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+$Permission=Permission::get()->where('id',$id)->first();
+        if($Permission->update($request->toArray())) {
+            return new PermissionResource($Permission);
         }
     }
 
@@ -109,14 +107,13 @@ $Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first(
      * @return \Illuminate\Http\Response
      * @internal param Request $request
      */
-    
-
+   
     public function destroy($id)
     {
-        $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+        $Permission = Permission::findOrFail($id);
 
-        if($Chatter_user_discussion->delete()) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Permission->delete()) {
+            return new PermissionResource($Permission);
         }   
     }
    

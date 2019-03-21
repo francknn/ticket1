@@ -16,7 +16,7 @@ use App\Authorizable;use App\Employe;
 use App\Http\Requests\RequeteStoreRequest;
 class RequeteController extends Controller
 {
-    use Authorizable;
+   
     
 
     /**

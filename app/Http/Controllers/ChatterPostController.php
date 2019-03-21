@@ -16,7 +16,7 @@ use App\Authorizable;use App\Employe;
 use App\Http\Requests\Chatter_postStoreRequest;
 class ChatterPostController extends Controller
 {
-    use Authorizable;
+   
     
 
     /**

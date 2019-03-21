@@ -13,7 +13,7 @@ class Chatter_discussionStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,8 @@ class Chatter_discussionStoreRequest extends FormRequest
     {
         return [
             'title'               => 'required|min:5|max:255',
-            'body_content'        => 'required|min:10',
-            'chatter_category_id' => 'required',
+           // 'body_content'        => 'required|min:10',
+            //'chatter_category_id' => 'required',
         ];
     }
     /**
@@ -38,8 +38,8 @@ class Chatter_discussionStoreRequest extends FormRequest
     {
         return [
             'title'               => 'Le titre est obligatoir',
-            'body_content'        => 'La description est obligatoir',
-            'chatter_category_id' => 'La categorie est obligatoit veillez choisir une',
+           // 'body_content'        => 'La description est obligatoir',
+            //'chatter_category_id' => 'La categorie est obligatoit veillez choisir une',
         ];
     }
 }

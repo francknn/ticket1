@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-        nom  
+        
+        'nom',
+        'prenom',
+        'email',
+        'telephone',
+        'pays',
+        'ville',
+        'adresse',
+        'image',
    ];
    
    public function messages(){

@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Chatter_user_discussion;
+use App\Entreprise;
 use App\Role;
 use App\Permission;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\Chatter_user_discussionResource;
-use App\Http\Requests\StoreChatter_user_discussion;
+use App\Http\Resources\EntrepriseResource;
+use App\Http\Requests\StoreEntreprise;
 use App\Client;
-use App\Authorizable;use App\Employe;
-
-class ChatterUserDiscussionController extends Controller
+use App\Http\Requests\EntrepriseStoreRequest;
+class EntrepriseController extends Controller
 {
-   
     
 
     /**
@@ -26,10 +24,10 @@ class ChatterUserDiscussionController extends Controller
      */
     public function index()
     {
-        $Chatter_user_discussions = Chatter_user_discussion::paginate(15);
+        $Entreprises = Entreprise::paginate(15);
 
         
-        return Chatter_user_discussionResource::collection($Chatter_user_discussions);
+        return EntrepriseResource::collection($Entreprises);
     }
 
     /**
@@ -49,14 +47,13 @@ class ChatterUserDiscussionController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(EntrepriseStoreRequest $request)
     {
 
-        
 
 
-        if($Chatter_user_discussion = Chatter_user_discussion::create($request->except('roles', 'permissions')) ) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Entreprise = Entreprise::create($request->except('roles', 'permissions')) ) {
+            return new EntrepriseResource($Entreprise);
         }
           
     }
@@ -69,9 +66,9 @@ class ChatterUserDiscussionController extends Controller
      */
     public function show($id)
     {
-       $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+       $Entreprise = Entreprise::findOrFail($id);
 
-       return new Chatter_user_discussionResource($Chatter_user_discussion);
+       return new EntrepriseResource($Entreprise);
     }
 
     /**
@@ -93,12 +90,13 @@ class ChatterUserDiscussionController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function update(Request $request, $id)
+
+    public function update(EntrepriseStoreRequest $request, $id)
     {
-        
-$Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first();
-        if($Chatter_user_discussion->update($request->toArray())) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+      
+$Entreprise=Entreprise::get()->where('id',$id)->first();
+        if($Entreprise->update($request->toArray())) {
+            return new EntrepriseResource($Entreprise);
         }
     }
 
@@ -109,14 +107,14 @@ $Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first(
      * @return \Illuminate\Http\Response
      * @internal param Request $request
      */
-    
+  
 
     public function destroy($id)
     {
-        $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+        $Entreprise = Entreprise::findOrFail($id);
 
-        if($Chatter_user_discussion->delete()) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Entreprise->delete()) {
+            return new EntrepriseResource($Entreprise);
         }   
     }
    

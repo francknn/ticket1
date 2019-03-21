@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostStoreRequest;
 class PostController extends Controller
 {
-    use Authorizable;
-    use Authorizable;
+   
+   
 
     /**
      * Display a listing of the resource.

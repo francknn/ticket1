@@ -19,7 +19,7 @@ use App\Http\Requests\UserUpdateRequest;
 class UserController extends Controller
 {
     
-   // use Authorizable;
+   //
     /**
      * Display a listing of the resource.
      *

@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Chatter_user_discussion;
+use App\Role_has_permission;
 use App\Role;
-use App\Permission;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\Chatter_user_discussionResource;
-use App\Http\Requests\StoreChatter_user_discussion;
+use App\Http\Resources\Role_has_permissionResource;
+use App\Http\Requests\StoreRole_has_permission;
 use App\Client;
 use App\Authorizable;use App\Employe;
-
-class ChatterUserDiscussionController extends Controller
+use App\Http\Requests\Role_has_permissionStoreRequest;
+class RolepermissionController extends Controller
 {
    
     
@@ -26,10 +25,10 @@ class ChatterUserDiscussionController extends Controller
      */
     public function index()
     {
-        $Chatter_user_discussions = Chatter_user_discussion::paginate(15);
+        $Role_has_permissions = Role_has_permission::paginate(15);
 
         
-        return Chatter_user_discussionResource::collection($Chatter_user_discussions);
+        return Role_has_permissionResource::collection($Role_has_permissions);
     }
 
     /**
@@ -49,14 +48,13 @@ class ChatterUserDiscussionController extends Controller
      */
    
   
-    public function store(Request $request)
+    public function store(Role_has_permissionStoreRequest $request)
     {
 
-        
 
 
-        if($Chatter_user_discussion = Chatter_user_discussion::create($request->except('roles', 'permissions')) ) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Role_has_permission = Role_has_permission::create($request->except('roles', 'Role_has_permissions')) ) {
+            return new Role_has_permissionResource($Role_has_permission);
         }
           
     }
@@ -69,9 +67,9 @@ class ChatterUserDiscussionController extends Controller
      */
     public function show($id)
     {
-       $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+       $Role_has_permission = Role_has_permission::get()->where('role_id',$id);
 
-       return new Chatter_user_discussionResource($Chatter_user_discussion);
+       return Role_has_permissionResource::collection($Role_has_permission);
     }
 
     /**
@@ -93,12 +91,12 @@ class ChatterUserDiscussionController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function update(Request $request, $id)
+
+    public function update(Role_has_permissionStoreRequest $request, $id)
     {
-        
-$Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first();
-        if($Chatter_user_discussion->update($request->toArray())) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+$Role_has_permission=Role_has_permission::get()->where('id',$id)->first();
+        if($Role_has_permission->update($request->toArray())) {
+            return new Role_has_permissionResource($Role_has_permission);
         }
     }
 
@@ -109,14 +107,13 @@ $Chatter_user_discussion=Chatter_user_discussion::get()->where('id',$id)->first(
      * @return \Illuminate\Http\Response
      * @internal param Request $request
      */
-    
-
+   
     public function destroy($id)
     {
-        $Chatter_user_discussion = Chatter_user_discussion::findOrFail($id);
+        $Role_has_permission = Role_has_permission::findOrFail($id);
 
-        if($Chatter_user_discussion->delete()) {
-            return new Chatter_user_discussionResource($Chatter_user_discussion);
+        if($Role_has_permission->delete()) {
+            return new Role_has_permissionResource($Role_has_permission);
         }   
     }
    

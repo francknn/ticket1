@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Requete extends Model
 {
     protected $fillable = [
-        client_id,
-        categorie_id
+        'titre',
+        'contenu'
     ];
 
     public function messages(){

@@ -16,7 +16,7 @@ use App\Http\Requests\Chatter_categoriesStoreRequest;
 use App\Authorizable;use App\Employe;
 class ChatterCategoriesController extends Controller
 {
-    use Authorizable;
+   
     
 
     /**

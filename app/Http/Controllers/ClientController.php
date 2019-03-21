@@ -16,7 +16,7 @@ use App\Authorizable;use App\Employe;
 use App\Http\Requests\ClientStoreRequest;
 class ClientController extends Controller
 {
-    use Authorizable;
+   
     
 
     /**
@@ -49,11 +49,10 @@ class ClientController extends Controller
      */
     
   
-    public function store(ClientStoreRequest $request)
+    public function store(Request $request)
     {
 
-     
-
+       
         if($Client = Client::create($request->except('roles', 'permissions')) ) {
             return new ClientResource($Client);
         }

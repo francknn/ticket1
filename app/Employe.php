@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Employe extends Model
 {
     protected $fillable = [
-        'FullName', 'EMPCode', 'Mobile','Position'
+        
+        'nom',
+        'prenom',
+        'email',
+        'telephone',
+        'pays',
+        'ville',
+        'adresse',
+        'image',
+        'service_id'
     ];
     
     public function messages(){

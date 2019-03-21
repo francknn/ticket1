@@ -16,7 +16,7 @@ use App\Employe;
 use App\Authorizable;use App\Http\Requests\Chatter_discussionStoreRequest;
 class ChatterDiscussionController extends Controller
 {
-    use Authorizable;
+   
 
     /**
      * Display a listing of the resource.
@@ -51,10 +51,10 @@ class ChatterDiscussionController extends Controller
     public function store(Chatter_discussionStoreRequest $request)
     {
 
-       
-
-        
-        
+        $request->merge([
+            'user_id' => 1 ,
+            'slug' => str_replace(' ', '-', strtolower($request['title']))
+          ]);
 
 
 

@@ -16,7 +16,6 @@ use App\Authorizable;use App\Employe;
 use App\Http\Requests\ServiceStoreRequest;
 class ServiceController extends Controller
 {
-    use Authorizable;
     
 
     /**

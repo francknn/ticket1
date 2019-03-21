@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chatter_categories extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+    ];
 }

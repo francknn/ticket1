@@ -13,7 +13,7 @@ class RequeteStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,7 @@ class RequeteStoreRequest extends FormRequest
     {
         return [
             'titre' => 'required',
-            'contenu' => 'required',
-            'categorie_id' => 'required'
+            'contenu' => 'required'
         ];
     }
      /**
@@ -38,8 +37,7 @@ class RequeteStoreRequest extends FormRequest
     {
         return [
             'titre' => 'Obligatoir!',
-            'contenu' => 'Obligatoir!',
-            'categorie_id' => 'Obligatoir!'
+            'contenu' => 'Obligatoir!'
  ];
     }
 }

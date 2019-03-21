@@ -13,7 +13,7 @@ class Chatter_postStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

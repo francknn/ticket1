@@ -12,11 +12,9 @@ use Image;
 use App\Http\Resources\CategorieResource;
 use App\Http\Requests\StoreCategorie;
 use App\Client;
-use App\Authorizable;use App\Employe;
-use App\Http\Requests\Chatter_categoriesStoreRequest;
+use App\Http\Requests\CategorieStoreRequest;
 class CategorieController extends Controller
 {
-    use Authorizable;
     
 
     /**
@@ -47,10 +45,11 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+   
   
-    public function store(Request $request)
+    public function store(CategorieStoreRequest $request)
     {
+
 
 
         if($Categorie = Categorie::create($request->except('roles', 'permissions')) ) {
@@ -90,11 +89,11 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
 
-
-    public function update(Request $request, $id)
+    public function update(CategorieStoreRequest $request, $id)
     {
-       
+      
 $Categorie=Categorie::get()->where('id',$id)->first();
         if($Categorie->update($request->toArray())) {
             return new CategorieResource($Categorie);
@@ -108,7 +107,7 @@ $Categorie=Categorie::get()->where('id',$id)->first();
      * @return \Illuminate\Http\Response
      * @internal param Request $request
      */
-    
+  
 
     public function destroy($id)
     {
