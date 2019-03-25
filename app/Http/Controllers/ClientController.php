@@ -52,7 +52,6 @@ class ClientController extends Controller
     public function store(Request $request)
     {
 
-       
         if($Client = Client::create($request->except('roles', 'permissions')) ) {
             return new ClientResource($Client);
         }

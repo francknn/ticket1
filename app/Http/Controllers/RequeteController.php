@@ -42,6 +42,16 @@ class RequeteController extends Controller
     }
 
     /**
+     *  $request->merge([
+            'client_id' => 1 
+           
+          ]);
+          $r=new Request();
+          $r=$request->except('categorie_id');
+          $a=2;
+          $a=intval($request['categorie_id']);
+return $a;
+          
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,10 +59,13 @@ class RequeteController extends Controller
      */
    
   
-    public function store(RequeteStoreRequest $request)
+    public function store(Request $request)
     {
 
-
+        $request->merge([
+            'client_id' => 1 ,
+            'categorie_id' => 1
+          ]);
 
         if($Requete = Requete::create($request->except('roles', 'permissions')) ) {
             return new RequeteResource($Requete);

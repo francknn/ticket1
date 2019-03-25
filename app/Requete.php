@@ -8,7 +8,11 @@ class Requete extends Model
 {
     protected $fillable = [
         'titre',
-        'contenu'
+        'contenu',
+        'categorie_id',
+        'client_id', 'sla_id',
+        'projet_id',
+        'image'
     ];
 
     public function messages(){

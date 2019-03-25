@@ -30,7 +30,9 @@ class ImageController extends Controller
                $destinationPath = public_path('/images'); //public path folder dir
                $image->move($destinationPath, $filename);  //mve to destination you mentioned 
                
-              return $filename;
+               return response()->json([
+                'nom' =>$filename,
+            ]);
               
         }
         return 0;

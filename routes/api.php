@@ -91,7 +91,6 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
     Route::post('sendPasswordResetLink', 'ResetPasswordController@sendEmail');
     Route::post('resetPassword', 'ChangePasswordController@process');
 });
@@ -101,6 +100,7 @@ Route::group([
 ], function () {
     Route::get('/employe/{Employe}', 'EmployeController@show');
 
+    Route::get('me', 'AuthController@me');
     Route::get('/employe', 'EmployeController@index');
     Route::post('/employe', 'EmployeController@store');
     Route::put('/employe/{id}','EmployeController@update');
@@ -181,7 +181,7 @@ Route::delete('/chatter_post/{id}', 'ChatterPostController@destroy');
 
 //////////role
 Route::get('/role/{role}', 'RoleController@show');
-
+Route::get('/role/user/{user}', 'RoleController@userroles');
 Route::get('/role', 'RoleController@index');
 Route::post('/role', 'RoleController@store');
 
@@ -230,5 +230,35 @@ Route::put('/Entreprise/{Entreprise}', 'EntrepriseController@update');
 
 
 Route::delete('/Entreprise/{id}', 'EntrepriseController@destroy');
+
+
+
+//////////Projet
+Route::get('/Projet/{Projet}', 'ProjetController@show');
+
+Route::get('/Projet', 'ProjetController@index');
+Route::post('/Projet', 'ProjetController@store');
+
+
+
+Route::put('/Projet/{Projet}', 'ProjetController@update');
+
+
+Route::delete('/Projet/{id}', 'ProjetController@destroy');
+
+
+
+//////////ElementSLA
+Route::get('/ElementSLA/{ElementSLA}', 'ElementSLAController@show');
+
+Route::get('/ElementSLA', 'ElementSLAController@index');
+Route::post('/ElementSLA', 'ElementSLAController@store');
+
+
+
+Route::put('/ElementSLA/{ElementSLA}', 'ElementSLAController@update');
+
+
+Route::delete('/ElementSLA/{id}', 'ElementSLAController@destroy');
   
 });

@@ -37,23 +37,20 @@ class RoleController extends Controller
             $permissions = Model_has_role::get()->where('model_id',$id);
            foreach ($permissions as $permission) {
             $role = Role::findOrFail($permission['role_id']);
-            $privileges=Role_has_permission::get()->where('role_id',$permission['role_id']);
-
+            $privileges=Role_has_permission::get()->where('role_id',$id);
             $priv=array();$j=0;
             foreach ($privileges as $privilege) {
-                $perm=Permission::findOrFail($privilege['permission_id']);
+                $perm=Role::findOrFail($privilege['permission_id']);
   $priv[$j]=$perm['name'];
-  $j=$j+1;
+  $j++;
             }
-            $roles[$i]=$priv;
-            $priv=null;
-          //  $roles[$i]=array($role,$privilege);
+            $roles[$i]=array($role,$priv);
             $i=$i+1;
            }
             
-           return RoleResource::collection($roles);
-        }
-            
+            return RoleResource::collection($roles);}
+
+
 
     /**
      * Store a newly created resource in storage.

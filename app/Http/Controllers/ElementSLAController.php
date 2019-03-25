@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
+use App\ElementSLA;
 use App\Role;
 use App\Permission;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\CategorieResource;
-use App\Http\Requests\StoreCategorie;
+use App\Http\Resources\ElementSLAResource;
+use App\Http\Requests\StoreElementSLA;
 use App\Client;
-use App\Http\Requests\CategorieStoreRequest;
-class CategorieController extends Controller
+use App\Http\Requests\ElementSLAStoreRequest;
+class ElementSLAController extends Controller
 {
     
 
@@ -24,10 +24,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $Categories = Categorie::paginate(15);
+        $ElementSLAs = ElementSLA::paginate(15);
 
         
-        return CategorieResource::collection($Categories);
+        return ElementSLAResource::collection($ElementSLAs);
     }
 
     /**
@@ -47,11 +47,13 @@ class CategorieController extends Controller
      */
    
   
-    public function store(CategorieStoreRequest $request)
+    public function store(ElementSLAStoreRequest $request)
     {
 
-        if($Categorie = Categorie::create($request->except('roles', 'permissions')) ) {
-            return new CategorieResource($Categorie);
+
+
+        if($ElementSLA = ElementSLA::create($request->except('roles', 'permissions')) ) {
+            return new ElementSLAResource($ElementSLA);
         }
           
     }
@@ -64,9 +66,9 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-       $Categorie = Categorie::findOrFail($id);
+       $ElementSLA = ElementSLA::findOrFail($id);
 
-       return new CategorieResource($Categorie);
+       return new ElementSLAResource($ElementSLA);
     }
 
     /**
@@ -89,12 +91,12 @@ class CategorieController extends Controller
      */
    
 
-    public function update(CategorieStoreRequest $request, $id)
+    public function update(ElementSLAStoreRequest $request, $id)
     {
       
-$Categorie=Categorie::get()->where('id',$id)->first();
-        if($Categorie->update($request->toArray())) {
-            return new CategorieResource($Categorie);
+$ElementSLA=ElementSLA::get()->where('id',$id)->first();
+        if($ElementSLA->update($request->toArray())) {
+            return new ElementSLAResource($ElementSLA);
         }
     }
 
@@ -109,10 +111,10 @@ $Categorie=Categorie::get()->where('id',$id)->first();
 
     public function destroy($id)
     {
-        $Categorie = Categorie::findOrFail($id);
+        $ElementSLA = ElementSLA::findOrFail($id);
 
-        if($Categorie->delete()) {
-            return new CategorieResource($Categorie);
+        if($ElementSLA->delete()) {
+            return new ElementSLAResource($ElementSLA);
         }   
     }
    

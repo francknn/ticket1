@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,11 +9,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Auth::routes();
-Route::resource('users', 'UserController');
-    Route::resource('roles', 'RoleController');
-    Route::resource('posts', 'PostController');
+Route::get('create-chart/{type}','ChartController@makeChart');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('bar-chart', 'ChartController@index');
+
+Route::group([
+    'middleware' => 'CORS',
+], function () {
+Route::get('/rolespermissions', 'RoleController@addrolepermission')->name('rolespermissions');
+});

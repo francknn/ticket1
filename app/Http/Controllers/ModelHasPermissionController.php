@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
+use App\Model_has_permission;
 use App\Role;
 use App\Permission;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\CategorieResource;
-use App\Http\Requests\StoreCategorie;
-use App\Client;
-use App\Http\Requests\CategorieStoreRequest;
-class CategorieController extends Controller
+use App\Http\Resources\Model_has_permissionResource;
+use App\Http\Requests\StoreModel_has_permission;
+
+use App\Authorizable;use App\Employe;
+use App\Http\Requests\Model_has_permissionStoreRequest;
+class Model_has_permissionController extends Controller
 {
+   
     
 
     /**
@@ -24,10 +26,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $Categories = Categorie::paginate(15);
+        $Model_has_permissions = Model_has_permission::paginate(15);
 
         
-        return CategorieResource::collection($Categories);
+        return Model_has_permissionResource::collection($Model_has_permissions);
     }
 
     /**
@@ -45,13 +47,13 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-   
+    
   
-    public function store(CategorieStoreRequest $request)
+    public function store(Request $request)
     {
 
-        if($Categorie = Categorie::create($request->except('roles', 'permissions')) ) {
-            return new CategorieResource($Categorie);
+        if($Model_has_permission = Model_has_permission::create($request->except('roles', 'permissions')) ) {
+            return new Model_has_permissionResource($Model_has_permission);
         }
           
     }
@@ -64,9 +66,9 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-       $Categorie = Categorie::findOrFail($id);
+       $Model_has_permission = Model_has_permission::findOrFail($id);
 
-       return new CategorieResource($Categorie);
+       return new Model_has_permissionResource($Model_has_permission);
     }
 
     /**
@@ -87,14 +89,13 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
-
-    public function update(CategorieStoreRequest $request, $id)
+    
+    public function update(Model_has_permissionStoreRequest $request, $id)
     {
-      
-$Categorie=Categorie::get()->where('id',$id)->first();
-        if($Categorie->update($request->toArray())) {
-            return new CategorieResource($Categorie);
+        
+$Model_has_permission=Model_has_permission::get()->where('id',$id)->first();
+        if($Model_has_permission->update($request->toArray())) {
+            return new Model_has_permissionResource($Model_has_permission);
         }
     }
 
@@ -109,10 +110,10 @@ $Categorie=Categorie::get()->where('id',$id)->first();
 
     public function destroy($id)
     {
-        $Categorie = Categorie::findOrFail($id);
+        $Model_has_permission = Model_has_permission::findOrFail($id);
 
-        if($Categorie->delete()) {
-            return new CategorieResource($Categorie);
+        if($Model_has_permission->delete()) {
+            return new Model_has_permissionResource($Model_has_permission);
         }   
     }
    

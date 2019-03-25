@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
+use App\Projet;
 use App\Role;
 use App\Permission;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use App\Http\Resources\CategorieResource;
-use App\Http\Requests\StoreCategorie;
+use App\Http\Resources\ProjetResource;
+use App\Http\Requests\StoreProjet;
 use App\Client;
-use App\Http\Requests\CategorieStoreRequest;
-class CategorieController extends Controller
+use App\Authorizable;use App\Employe;
+use App\Http\Requests\ProjetStoreRequest;
+class ProjetController extends Controller
 {
+   
     
 
     /**
@@ -24,10 +26,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $Categories = Categorie::paginate(15);
+        $Projets = Projet::paginate(15);
 
         
-        return CategorieResource::collection($Categories);
+        return ProjetResource::collection($Projets);
     }
 
     /**
@@ -40,6 +42,16 @@ class CategorieController extends Controller
     }
 
     /**
+     *  $request->merge([
+            'client_id' => 1 
+           
+          ]);
+          $r=new Request();
+          $r=$request->except('categorie_id');
+          $a=2;
+          $a=intval($request['categorie_id']);
+return $a;
+          
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -47,11 +59,12 @@ class CategorieController extends Controller
      */
    
   
-    public function store(CategorieStoreRequest $request)
+    public function store(ProjetStoreRequest $request)
     {
 
-        if($Categorie = Categorie::create($request->except('roles', 'permissions')) ) {
-            return new CategorieResource($Categorie);
+
+        if($Projet = Projet::create($request->except('roles', 'permissions')) ) {
+            return new ProjetResource($Projet);
         }
           
     }
@@ -64,9 +77,9 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-       $Categorie = Categorie::findOrFail($id);
+       $Projet = Projet::findOrFail($id);
 
-       return new CategorieResource($Categorie);
+       return new ProjetResource($Projet);
     }
 
     /**
@@ -89,12 +102,11 @@ class CategorieController extends Controller
      */
    
 
-    public function update(CategorieStoreRequest $request, $id)
+    public function update(ProjetStoreRequest $request, $id)
     {
-      
-$Categorie=Categorie::get()->where('id',$id)->first();
-        if($Categorie->update($request->toArray())) {
-            return new CategorieResource($Categorie);
+$Projet=Projet::get()->where('id',$id)->first();
+        if($Projet->update($request->toArray())) {
+            return new ProjetResource($Projet);
         }
     }
 
@@ -105,14 +117,13 @@ $Categorie=Categorie::get()->where('id',$id)->first();
      * @return \Illuminate\Http\Response
      * @internal param Request $request
      */
-  
-
+   
     public function destroy($id)
     {
-        $Categorie = Categorie::findOrFail($id);
+        $Projet = Projet::findOrFail($id);
 
-        if($Categorie->delete()) {
-            return new CategorieResource($Categorie);
+        if($Projet->delete()) {
+            return new ProjetResource($Projet);
         }   
     }
    

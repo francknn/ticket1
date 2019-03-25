@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableRequetes extends Migration
+class CreateProjetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTableRequetes extends Migration
      */
     public function up()
     {
-        Schema::create('requetes', function (Blueprint $table) {
+        Schema::create('projets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titre');
-            $table->string('contenu');
-            $table->string('sla_id');
-            $table->string('projet_id');
-            $table->string('image');
+            $table->string('nom');
+            $table->string('periode');
+            $table->string('isSLA');
+            $table->integer('entreprise_id');
+            $table->integer('categorie_id');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTableRequetes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requetes');
+        Schema::dropIfExists('projets');
     }
 }
