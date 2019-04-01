@@ -12,10 +12,8 @@ class Client extends Model
         'prenom',
         'email',
         'telephone',
-        'pays',
-        'ville',
-        'adresse',
         'image',
+        'user_id'
    ];
    
    public function messages(){

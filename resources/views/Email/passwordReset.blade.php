@@ -7,6 +7,6 @@ Click on the button below to change password
 Reset Password
 @endcomponent
 
-Thanks,<br>
+Thanks,<br style="align-content: center">
 {{ config('app.name') }}
 @endcomponent

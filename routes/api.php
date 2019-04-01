@@ -230,6 +230,18 @@ Route::put('/Entreprise/{Entreprise}', 'EntrepriseController@update');
 
 
 Route::delete('/Entreprise/{id}', 'EntrepriseController@destroy');
+//////////Planning
+Route::get('/Planning/{Planning}', 'PlanningController@show');
+
+Route::get('/Planning', 'PlanningController@index');
+Route::post('/Planning', 'PlanningController@store');
+
+Route::post('/image', 'ImageController@store');
+
+Route::put('/Planning/{Planning}', 'PlanningController@update');
+
+
+Route::delete('/Planning/{id}', 'PlanningController@destroy');
 
 
 

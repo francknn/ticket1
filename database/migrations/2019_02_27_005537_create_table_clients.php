@@ -18,11 +18,9 @@ class CreateTableClients extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('email');
-            $table->string('telephone');
-            $table->string('pays');
-            $table->string('ville');
-            $table->string('adresse');            
+            $table->string('telephone');            
             $table->string('image');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
